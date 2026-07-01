@@ -12,8 +12,6 @@
 
 Reference implementation for **B2B SaaS multi-tenancy in Django**: organizations as tenants, user memberships with roles, and **row-level data isolation** so each tenant only sees their own projects.
 
-Built for portfolio and client proposals — demonstrates senior Django API design without exposing cross-tenant data.
-
 ## Features
 
 - Custom email-based `User` model with UUID primary keys
@@ -165,7 +163,7 @@ django-saas-multitenant-api/
 
 ## Related repositories
 
-Other SparkScribe portfolio and starter projects:
+Other SparkScribe open-source projects:
 
 | Repository | Description |
 |---|---|
@@ -175,6 +173,35 @@ Other SparkScribe portfolio and starter projects:
 | [celery-task-pipeline](https://github.com/SparkScribe/celery-task-pipeline) | Celery background task pipeline |
 | [rag-document-qa-api](https://github.com/SparkScribe/rag-document-qa-api) | RAG document Q&A API |
 
+## Author
+
+<table>
+  <tr>
+    <td><strong>Name</strong></td>
+    <td>Ankit Vaghani</td>
+  </tr>
+  <tr>
+    <td><strong>Organization</strong></td>
+    <td><a href="https://sparkscribetech.com">SparkScribe Technologies</a></td>
+  </tr>
+  <tr>
+    <td><strong>GitHub</strong></td>
+    <td><a href="https://github.com/vaghaniankit">@vaghaniankit</a> · <a href="https://github.com/SparkScribe">@SparkScribe</a></td>
+  </tr>
+  <tr>
+    <td><strong>LinkedIn</strong></td>
+    <td><a href="https://www.linkedin.com/in/ankit-vaghani/">linkedin.com/in/ankit-vaghani</a></td>
+  </tr>
+  <tr>
+    <td><strong>Website</strong></td>
+    <td><a href="https://sparkscribetech.com">sparkscribetech.com</a></td>
+  </tr>
+</table>
+
+Built and maintained by **Ankit Vaghani** · [SparkScribe Technologies](https://sparkscribetech.com)
+
+---
+
 ## License
 
-MIT — see [LICENSE](LICENSE). Copyright (c) 2026 Ankit Vaghani / SparkScribe Technologies.
+MIT — see [LICENSE](LICENSE). Copyright (c) 2026 Ankit Vaghani, SparkScribe Technologies.
