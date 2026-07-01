@@ -1,7 +1,14 @@
-# django-saas-multitenant-api
+# Django SaaS Multitenant API
 
 [![CI](https://github.com/SparkScribe/django-saas-multitenant-api/actions/workflows/ci.yml/badge.svg)](https://github.com/SparkScribe/django-saas-multitenant-api/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Django](https://img.shields.io/badge/Django-5.x-092E20?logo=django&logoColor=white)](https://www.djangoproject.com/)
+[![DRF](https://img.shields.io/badge/Django_REST_Framework-3.x-FF1709)](https://www.django-rest-framework.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)](https://docs.docker.com/compose/)
+[![pytest](https://img.shields.io/badge/pytest-8.x-0A9EDC?logo=pytest&logoColor=white)](https://pytest.org/)
+[![OpenAPI](https://img.shields.io/badge/OpenAPI-drf--spectacular-6BA539)](https://drf-spectacular.readthedocs.io/)
 
 Reference implementation for **B2B SaaS multi-tenancy in Django**: organizations as tenants, user memberships with roles, and **row-level data isolation** so each tenant only sees their own projects.
 
