@@ -157,7 +157,7 @@ class TestProjectAPI:
         api_client.credentials(HTTP_AUTHORIZATION=f"Bearer {access}")
         response = api_client.get("/api/v1/projects/")
         assert response.status_code == status.HTTP_403_FORBIDDEN
-        assert "organization" in str(response.data["detail"]).lower()
+        assert response.data["code"] == "organization_required"
 
     def test_other_org_user_cannot_see_foreign_project(
         self,
