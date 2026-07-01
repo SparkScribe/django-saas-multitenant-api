@@ -1,9 +1,16 @@
 """Shared test fixtures for accounts and organizations."""
 
 import pytest
+from rest_framework.test import APIClient
+from rest_framework_simplejwt.tokens import AccessToken
 
 from apps.accounts.models import User
 from apps.organizations.models import Membership, MembershipRole, Organization
+
+
+@pytest.fixture
+def api_client() -> APIClient:
+    return APIClient()
 
 
 @pytest.fixture
@@ -42,3 +49,24 @@ def member_membership(other_user: User, organization: Organization) -> Membershi
         organization=organization,
         role=MembershipRole.MEMBER,
     )
+
+
+def obtain_access_token(api_client: APIClient, email: str, password: str) -> str:
+    response = api_client.post(
+        "/api/v1/auth/token/",
+        {"email": email, "password": password},
+        format="json",
+    )
+    assert response.status_code == 200, response.data
+    return response.data["access"]
+
+
+@pytest.fixture
+def auth_client(api_client: APIClient, user: User, owner_membership: Membership) -> APIClient:
+    access = obtain_access_token(api_client, user.email, "testpass123")
+    api_client.credentials(HTTP_AUTHORIZATION=f"Bearer {access}")
+    return api_client
+
+
+def decode_access_token(token: str) -> dict:
+    return AccessToken(token).payload
