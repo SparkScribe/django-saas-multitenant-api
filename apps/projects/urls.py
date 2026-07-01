@@ -1,5 +1,10 @@
-"""Projects URL routes — implemented in Phase 3."""
+"""Projects URL routes."""
 
-from django.urls import path
+from rest_framework.routers import DefaultRouter
 
-urlpatterns: list = []
+from apps.projects.views import ProjectViewSet
+
+router = DefaultRouter()
+router.register("", ProjectViewSet, basename="project")
+
+urlpatterns = router.urls

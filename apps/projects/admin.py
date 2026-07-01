@@ -1,3 +1,12 @@
 from django.contrib import admin
 
-# Register your models here.
+from apps.projects.models import Project
+
+
+@admin.register(Project)
+class ProjectAdmin(admin.ModelAdmin):
+    list_display = ("name", "organization", "created_at")
+    list_filter = ("organization",)
+    search_fields = ("name", "organization__name", "organization__slug")
+    readonly_fields = ("id", "created_at", "updated_at")
+    raw_id_fields = ("organization",)

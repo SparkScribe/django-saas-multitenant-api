@@ -1,5 +1,10 @@
-"""Organizations URL routes — implemented in Phase 2."""
+"""Organizations URL routes."""
 
-from django.urls import path
+from rest_framework.routers import DefaultRouter
 
-urlpatterns: list = []
+from apps.organizations.views import OrganizationViewSet
+
+router = DefaultRouter()
+router.register("", OrganizationViewSet, basename="organization")
+
+urlpatterns = router.urls
