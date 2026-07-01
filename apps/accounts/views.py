@@ -1,5 +1,6 @@
 """Accounts API views."""
 
+from drf_spectacular.utils import extend_schema
 from rest_framework import generics, status
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.request import Request
@@ -8,6 +9,7 @@ from rest_framework.response import Response
 from apps.accounts.serializers import RegisterSerializer, UserMeSerializer, UserSerializer
 
 
+@extend_schema(tags=["auth"])
 class RegisterView(generics.CreateAPIView):
     """Register a new user and optionally create an organization."""
 
@@ -22,6 +24,7 @@ class RegisterView(generics.CreateAPIView):
         return Response(output.data, status=status.HTTP_201_CREATED)
 
 
+@extend_schema(tags=["auth"])
 class MeView(generics.RetrieveAPIView):
     """Return the authenticated user and their organization memberships."""
 

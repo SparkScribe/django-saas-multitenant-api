@@ -1,5 +1,6 @@
 """Organizations API views."""
 
+from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import mixins, status, viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -8,6 +9,10 @@ from apps.organizations.models import Organization
 from apps.organizations.serializers import OrganizationCreateSerializer, OrganizationSerializer
 
 
+@extend_schema_view(
+    list=extend_schema(tags=["organizations"]),
+    create=extend_schema(tags=["organizations"]),
+)
 class OrganizationViewSet(
     mixins.ListModelMixin,
     mixins.CreateModelMixin,

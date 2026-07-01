@@ -1,5 +1,6 @@
 """Projects API views."""
 
+from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import mixins, status, viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -8,8 +9,17 @@ from apps.projects.mixins import OrganizationQuerysetMixin
 from apps.projects.models import Project
 from apps.projects.permissions import IsOrganizationMember
 from apps.projects.serializers import ProjectCreateSerializer, ProjectSerializer
+from config.openapi import ORGANIZATION_HEADER
 
 
+@extend_schema_view(
+    list=extend_schema(tags=["projects"], parameters=[ORGANIZATION_HEADER]),
+    create=extend_schema(tags=["projects"], parameters=[ORGANIZATION_HEADER]),
+    retrieve=extend_schema(tags=["projects"], parameters=[ORGANIZATION_HEADER]),
+    update=extend_schema(tags=["projects"], parameters=[ORGANIZATION_HEADER]),
+    partial_update=extend_schema(tags=["projects"], parameters=[ORGANIZATION_HEADER]),
+    destroy=extend_schema(tags=["projects"], parameters=[ORGANIZATION_HEADER]),
+)
 class ProjectViewSet(
     OrganizationQuerysetMixin,
     mixins.ListModelMixin,

@@ -128,7 +128,23 @@ SIMPLE_JWT = {
 
 SPECTACULAR_SETTINGS = {
     "TITLE": "Django SaaS Multi-Tenant API",
-    "DESCRIPTION": "B2B SaaS multi-tenancy reference with organization-scoped data isolation.",
+    "DESCRIPTION": (
+        "B2B SaaS multi-tenancy reference API. Organizations act as tenants; "
+        "projects are isolated by `organization_id` with JWT or header-based "
+        "tenant context resolution."
+    ),
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
+    "SCHEMA_PATH_PREFIX": r"/api/v1",
+    "COMPONENT_SPLIT_REQUEST": True,
+    "TAGS": [
+        {"name": "auth", "description": "Registration, JWT authentication, and profile."},
+        {"name": "organizations", "description": "Organizations the authenticated user belongs to."},
+        {"name": "projects", "description": "Projects scoped to the active organization."},
+    ],
+    "SWAGGER_UI_SETTINGS": {
+        "deepLinking": True,
+        "persistAuthorization": True,
+        "displayRequestDuration": True,
+    },
 }

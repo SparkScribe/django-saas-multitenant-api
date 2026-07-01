@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create environment file
+        run: cp .env.example .env
+
+      - name: Build web image
+        run: docker compose build web
+
+      - name: Start PostgreSQL
+        run: docker compose up -d db
+
+      - name: Wait for PostgreSQL
+        run: |
+          for i in $(seq 1 30); do
+            if docker compose exec -T db pg_isready -U postgres -d django_saas_multitenant; then
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "PostgreSQL did not become ready in time"
+          exit 1
+
+      - name: Run tests
+        run: docker compose run --rm --entrypoint "" web pytest
+
+      - name: Django system check
+        run: docker compose run --rm --entrypoint "" web python manage.py check
+
+      - name: Validate OpenAPI schema
+        run: docker compose run --rm --entrypoint "" web python manage.py spectacular --file /tmp/schema.yml --validate
